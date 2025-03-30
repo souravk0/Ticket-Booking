@@ -11,6 +11,7 @@
             padding: 20px;
             background-color: #f5f5f5;
         }
+
         .container {
             max-width: 600px;
             margin: auto;
@@ -19,21 +20,39 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
             color: #333;
         }
-        .ticket, .sell-ticket {
+
+        .ticket-list {
+            margin-top: 20px;
+        }
+
+        .ticket {
             border: 1px solid #ddd;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 10px;
             background-color: #fff;
         }
+
+        .resale {
+            color: green;
+            font-weight: bold;
+        }
+
         .warning {
             color: red;
             font-weight: bold;
         }
+
+        .info {
+            color: blue;
+            font-weight: bold;
+        }
+
         .button {
             background-color: blue;
             color: white;
@@ -43,108 +62,168 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
         .button:hover {
             background-color: darkblue;
         }
-        input {
-            width: 100%;
-            padding: 8px;
-            margin: 5px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+
+        .link {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            color: blue;
+        }
+
+        .link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Available Resale Tickets</h2>
+        <h2>My Tickets</h2>
+        <a href="#" onclick="showResalePage()" class="link">View Tickets for Sale</a>
+        <div id="myTickets" class="ticket-list"></div>
+    </div>
+
+    <div class="container" style="display: none;" id="resalePage">
+        <h2>Sell Your Tickets</h2>
+        <a href="#" onclick="showMyTicketsPage()" class="link">Go to My Tickets</a>
         <div id="resaleTickets" class="ticket-list"></div>
     </div>
 
-    <div class="container">
-        <h2>Sell Your Ticket</h2>
-        <div class="sell-ticket">
-            <input type="text" id="eventName" placeholder="Event Name">
-            <input type="text" id="seatNumber" placeholder="Seat Number">
-            <input type="number" id="ticketPrice" placeholder="Ticket Price">
-            <input type="number" id="ticketAvailability" placeholder="Available Seats">
-            <button class="button" onclick="sellTicket()">Sell Ticket</button>
-        </div>
-    </div>
-
     <script>
-        let resaleTickets = [
-            { id: 1, event: "Concert A", seat: "A12", price: 500, available: 80, totalSeats: 100 },
-            { id: 2, event: "Match B", seat: "B20", price: 700, available: 20, totalSeats: 100 }
+        let tickets = [
+            { id: 1, event: "Concert A", seat: "A12", price: 500, resale: false, totalSeats: 100, available: 80 },
+            { id: 2, event: "Match B", seat: "B20", price: 700, resale: false, totalSeats: 50, available: 10 },
         ];
+
+        let resaleTickets = [];
+
+        function displayTickets() {
+            const myTicketsDiv = document.getElementById("myTickets");
+            myTicketsDiv.innerHTML = "";
+
+            tickets.forEach(ticket => {
+                const ticketDiv = document.createElement("div");
+                ticketDiv.classList.add("ticket");
+
+                let availabilityPercentage = (ticket.available / ticket.totalSeats) * 100;
+                let commission = 0;
+                let commissionAmount = 0;
+                let finalPrice = ticket.price;
+
+                if (availabilityPercentage >= 80) {
+                    commission = 50; // 50% commission
+                } else if (availabilityPercentage <= 20) {
+                    commission = 10; // 10% commission
+                }
+
+                commissionAmount = (ticket.price * commission) / 100;
+                finalPrice = ticket.price - commissionAmount;
+
+                ticketDiv.innerHTML = `
+                    <p><strong>Event:</strong> ${ticket.event}</p>
+                    <p><strong>Seat:</strong> ${ticket.seat}</p>
+                    <p><strong>Original Price:</strong> ₹${ticket.price}</p>
+                    <p><strong>Tickets Left:</strong> ${ticket.available} / ${ticket.totalSeats}</p>
+                    <p class="warning">Commission: ${commission}% (₹${commissionAmount.toFixed(2)})</p>
+                    <p class="info">Amount You Receive: ₹${finalPrice.toFixed(2)}</p>
+                    ${ticket.resale ? 
+                        `<p class="resale">Listed for Sale</p>` : 
+                        `<button class="button" onclick="sellTicket(${ticket.id})">Sell Ticket</button>`
+                    }
+                `;
+
+                myTicketsDiv.appendChild(ticketDiv);
+            });
+        }
+
+        function sellTicket(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            if (ticket) {
+                ticket.resale = true;
+
+                let availabilityPercentage = (ticket.available / ticket.totalSeats) * 100;
+                let commission = 0;
+                let commissionAmount = 0;
+                let finalPrice = ticket.price;
+
+                if (availabilityPercentage >= 80) {
+                    commission = 50; // 50% commission
+                } else if (availabilityPercentage <= 20) {
+                    commission = 10; // 10% commission
+                }
+
+                commissionAmount = (ticket.price * commission) / 100;
+                finalPrice = ticket.price - commissionAmount;
+
+                resaleTickets.push({ 
+                    ...ticket, 
+                    price: finalPrice, 
+                    commissionPercent: commission,
+                    commissionAmount: commissionAmount,
+                    userReceives: finalPrice 
+                });
+
+                alert(`Your ticket is now listed for sale! You will receive ₹${finalPrice.toFixed(2)} after commission.`);
+                displayTickets();
+                displayResaleTickets();
+            }
+        }
 
         function displayResaleTickets() {
             const resaleTicketsDiv = document.getElementById("resaleTickets");
             resaleTicketsDiv.innerHTML = "";
 
             resaleTickets.forEach(ticket => {
-                let commission = 0;
-                let finalPrice = ticket.price;
-                let availablePercentage = (ticket.available / ticket.totalSeats) * 100;
-                let commissionMessage = "";
-
-                if (availablePercentage >= 80) {
-                    commission = ticket.price * 0.50;
-                    commissionMessage = "Low Demand! 50% Commission Applied.";
-                } else if (availablePercentage <= 20) {
-                    commission = ticket.price * 0.10;
-                    commissionMessage = "High Demand! 10% Commission Applied.";
-                }
-
-                finalPrice -= commission;
-
                 const ticketDiv = document.createElement("div");
                 ticketDiv.classList.add("ticket");
-                
+
                 ticketDiv.innerHTML = `
                     <p><strong>Event:</strong> ${ticket.event}</p>
                     <p><strong>Seat:</strong> ${ticket.seat}</p>
-                    <p><strong>Original Price:</strong> ₹${ticket.price}</p>
-                    <p><strong>Available Seats:</strong> ${ticket.available}/${ticket.totalSeats}</p>
-                    ${commission > 0 ? <p class="warning">${commissionMessage} ₹${commission.toFixed(2)}</p> : ""}
-                    <p><strong>Final Price for Seller:</strong> ₹${finalPrice.toFixed(2)}</p>
-                    <button class="button" onclick="buyTicket(${ticket.id}, ${ticket.price})">Buy Now</button>
+                    <p><strong>Tickets Left:</strong> ${ticket.available} / ${ticket.totalSeats}</p>
+                    <p class="warning">Commission: ${ticket.commissionPercent}% (₹${ticket.commissionAmount.toFixed(2)})</p>
+                    <p class="info">Resale Price: ₹${ticket.price.toFixed(2)}</p>
+                    <p class="resale">Amount You Receive: ₹${ticket.userReceives.toFixed(2)}</p>
+                    <button class="button" onclick="removeListing(${ticket.id})">Remove from Sale</button>
                 `;
-                
+
                 resaleTicketsDiv.appendChild(ticketDiv);
             });
         }
 
-        function buyTicket(ticketId, price) {
-            alert(You have purchased ticket ID ${ticketId} for ₹${price.toFixed(2)});
-        }
+        function removeListing(ticketId) {
+            const ticket = resaleTickets.find(t => t.id === ticketId);
+            if (ticket) {
+                alert(`You have removed ${ticket.event} - Seat ${ticket.seat} from resale.`);
+                
+                resaleTickets = resaleTickets.filter(t => t.id !== ticketId);
 
-        function sellTicket() {
-            const eventName = document.getElementById("eventName").value;
-            const seatNumber = document.getElementById("seatNumber").value;
-            const ticketPrice = parseFloat(document.getElementById("ticketPrice").value);
-            const ticketAvailability = parseInt(document.getElementById("ticketAvailability").value);
-            
-            if (!eventName || !seatNumber || isNaN(ticketPrice) || isNaN(ticketAvailability)) {
-                alert("Please fill in all fields correctly.");
-                return;
+                let originalTicket = tickets.find(t => t.id === ticketId);
+                if (originalTicket) {
+                    originalTicket.resale = false;
+                }
+
+                displayResaleTickets();
+                displayTickets();
             }
-            
-            let newTicket = {
-                id: resaleTickets.length + 1,
-                event: eventName,
-                seat: seatNumber,
-                price: ticketPrice,
-                available: ticketAvailability,
-                totalSeats: ticketAvailability 
-            };
-            
-            resaleTickets.push(newTicket);
-            displayResaleTickets();
-            alert("Ticket listed for resale!");
         }
 
-        displayResaleTickets();
+        function showResalePage() {
+            document.querySelector(".container").style.display = "none";
+            document.getElementById("resalePage").style.display = "block";
+        }
+
+        function showMyTicketsPage() {
+            document.getElementById("resalePage").style.display = "none";
+            document.querySelector(".container").style.display = "block";
+        }
+
+        displayTickets();
     </script>
 </body>
 </html>
