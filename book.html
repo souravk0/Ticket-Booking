@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="favicon.ico" rel="icon" />
+    <link href="apple-touch-icon.ico" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css"
+    />
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <!-- Template Main CSS File -->
+    <link href="style.css" rel="stylesheet" />
+
+    <script>
+      function calculatePrice() {
+          var pricePerPerson = 3000;
+          var numOfPeople = document.getElementById("peopleSelect").value;
+          var numOfDays = document.getElementById("daysSelect").value;
+          var transportationMode = document.getElementById("transportSelect").value;
+          var hotelType = document.getElementById("hotelSelect").value;
+          
+
+          var transportationCost = 0;
+          var hotelCost = 0;
+
+          switch (transportationMode)
+            {
+              case "NonACBus":
+                transportationCost = 600;
+                break;
+              case "ACBus":
+              transportationCost = 1000;
+              break;
+              case "ACTrain":
+              transportationCost = 1000;
+              break;
+              case "ACTrainPtimium":
+              transportationCost = 1500;
+              break;
+              case "Flight":
+              transportationCost = 5000;
+              break;
+
+            }
+
+            switch (hotelType)
+            {
+              case "Budget":
+                hotelCost = 1000;
+                break;
+              case "Standard":
+              hotelCost = 2000;
+              break;
+              case "Luxury":
+              hotelCost = 3000;
+              break;
+
+              default:
+                hotelCost = 0;
+            }
+
+            var totalPrice = (pricePerPerson + transportationCost + hotelCost) * numOfPeople * numOfDays;
+          document.getElementById("priceDisplay").innerText = "Total Price: " + totalPrice + " Rs/- ";
+      }
+</script>
+</head>
+<body>
+     <!-- ======= Book A Trip Section ======= -->
+     <section id="book-a-table" class="book-a-table">
+        <div class="container max-width-container">
+          <div class="section-title">
+            <h2>Book <span>Ticket</span></h2>
+          
+          </div>
+
+          <form role="form" class="email-form">
+            <div class="row">
+             
+              <div class="col-lg-4 col-md-6 form-group">
+                <label for="transportSelect">Your Details</label>
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  data-rule="minlen:4"
+                  data-msg="Please enter at least 4 chars"
+                />
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                  data-rule="email"
+                  data-msg="Please enter a valid email"
+                />
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+                <input
+                  type="text"
+                  class="form-control"
+                  name="phone"
+                  id="phone"
+                  placeholder="Your Phone"
+                  data-rule="minlen:4"
+                  data-msg="Please enter at least 4 chars"
+                />
+                <div class="validate"></div>
+              </div>
+           
+       
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                <label for="peopleSelect">Number of People</label>
+                <select
+                  class="form-control"  
+                  id="peopleSelect" onchange="calculatePrice()"
+
+                > 
+                <option value="1">1 person</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+              </select>
+                <div class="validate"></div>
+              </div>
+
+
+              <div class="col-lg-4 col-md-6 form-group mt-3">
+                <label for="transportSelect">Seat Category</label>
+                <select
+                  class="form-control"  
+                  id="transportSelect" onchange="calculatePrice()"
+
+                > 
+                <option value="ACBus">Standard Seats</option>
+                <option value="NonACBus">Premium Seats</option>
+                <option value="ACTrainPtimium">VIP/Executive Seats</option>
+              
+              </select>
+                <div class="validate"></div>
+              </div>
+
+            </div>
+           
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your booking request was sent. We will call back or send an
+                Email to confirm your Trip. Thank you!
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 form-group mt-3 mt-md-0">
+              <p
+                class="form-control" 
+                id="priceDisplay"
+              >Total Price: 5000 </p>
+              <div class="validate"></div>
+            </div>
+          
+            <br>
+            <div class="text-center">
+              <div class="text-center">
+                <a href="tickets.html" class="btn btn-primary">Confirm Booking</a>
+            </div>
+              </div>
+          </form>
+        </div>
+      </section>
+
+
+</body>
+</html>

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>Eventix</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="favicon.ico" rel="icon" />
+    <link href="apple-touch-icon.ico" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css"
+    />
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+    <!-- Template Main CSS File -->
+    <link href="style.css" rel="stylesheet" />
+    <style>
+        #chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgb(63, 51, 237);
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px #ffff;
+}
+
+#chatbot-iframe {
+    display: none;
+    position: fixed;
+   
+    bottom: 70px;
+    right: 20px;
+    width: 400px;
+    height: 600px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.903);
+}
+    </style>
+  </head>
+
+  <body>
+    <!-- ======= Top Bar ======= -->
+    <section
+      id="topbar"
+      class="d-flex align-items-center fixed-top topbar-transparent"
+    >
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-center justify-content-lg-start"
+      >
+        
+        <!-- <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"
+          ><span>Mon-Fri: 10:00 AM - 7:00 PM</span></i
+        > 
+        <i class="bi bi-clock ms-4 d-none d-lg-flex align-items-center"
+          ><span>Sat-Sun: 10:00 AM - 01:00 PM</span></i
+        > -->
+      </div>
+    </section>
+
+
+
+            
+
+    <!-- ======= Header ======= -->
+    <header
+      id="header"
+      class="fixed-top d-flex align-items-center header-transparent"
+    >
+      <div
+        class="container-fluid container-xl d-flex align-items-center justify-content-between"
+      >
+        <div class="logo me-auto">
+          <h1><a href="index.html">Eventix</a></h1>
+        </div>
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+            <li><a class="nav-link scrollto" href="#menu">Events</a></li>
+         
+            <li><a class="nav-link scrollto" href="#events">Grand Shows</a></li>
+            <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+
+           <!-- CHATBOT  -->
+         <!--  <button id="chatbot-button">Chat with us</button> -->
+           <div id="chatbot-icon" onclick="toggleChatWindow()">
+            <img src="bot2.png" alt="Chatbot Icon" class="icon" />
+        </div>
+           <iframe id="chatbot-iframe" 
+               src="https://cdn.botpress.cloud/webchat/v2.2/shareable.html?configUrl=https://files.bpcontent.cloud/2025/03/29/18/20250329184746-LQP1C3PB.json">
+           </iframe>
+
+
+
+            <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+
+        <a href="login.html" class="book-a-table-btn scrollto"
+          >Login</a
+        >
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Hero Section ======= -->
+    <section id="hero">
+      <div class="hero-container max-width-container">
+        <div
+          id="heroCarousel"
+          data-bs-interval="5000"
+          class="carousel slide carousel-fade"
+          data-bs-ride="carousel"
+        >
+          <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+          <div class="carousel-inner" role="listbox">
+
+            
+     
+            <!-- Slide 1 -->
+            <div
+              class="carousel-item active"
+              style="background-image: url(https://images.pexels.com/photos/713149/pexels-photo-713149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2 class="animate__animated animate__fadeInDown">
+                    <span>Eventix</span> Book Your Next Theatre Experience With Ease!
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                    Escape into the world of cinema with<strong> Eventix!</strong> Ticket Ease.
+                  </p>
+                  <div>
+                    <a
+                      href="#menu"
+                      class="btn-menu animate__animated animate__fadeInUp scrollto"
+                      >Our Events</a
+                    >
+                    <a
+                      href="login.html"
+                      class="btn-book animate__animated animate__fadeInUp scrollto"
+                      >Login</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div
+              class="carousel-item"
+              style="background-image: url(https://images.pexels.com/photos/3689547/pexels-photo-3689547.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2 class="animate__animated animate__fadeInDown">
+                    Our Spirit<span> !</span>
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                     <strong>Eventix</strong>, We Beleive Theater is more than just a Performance. It's an Experience that tranports you to a world of imagination, emotion and story telling. Our Mission is to make theater accessible and booking efortless, so you never miss a moment of magic on stage.
+                    
+                  </p>
+                  <div>
+                    <a
+                      href="#menu"
+                      class="btn-menu animate__animated animate__fadeInUp scrollto"
+                      >Our Offers</a
+                    >
+                    <a
+                      href="#book-a-table"
+                      class="btn-book animate__animated animate__fadeInUp scrollto"
+                      >Book a Ticket</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div
+              class="carousel-item"
+              style="background-image: url(https://images.pexels.com/photos/27239324/pexels-photo-27239324/free-photo-of-a-man-is-singing-into-a-microphone-in-front-of-a-red-and-orange-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)"
+            >
+              <div class="carousel-container">
+                <div class="carousel-content">
+                  <h2 class="animate__animated animate__fadeInDown">
+                    Specialty <span>!</span>
+                  </h2>
+                  <p class="animate__animated animate__fadeInUp">
+                    Enjoy Personalized recommendations, exclusive discounts, and hassle-free ticketing! .
+                  </p>
+                  <div>
+                    <a
+                      href="#menu"
+                      class="btn-menu animate__animated animate__fadeInUp scrollto"
+                      >Our Offers</a
+                    >
+                    <a
+                      href="#book-a-table"
+                      class="btn-book animate__animated animate__fadeInUp scrollto"
+                      >Book a Ticket</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#heroCarousel"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon bi bi-chevron-left"
+              aria-hidden="true"
+            ></span>
+          </a>
+
+          <a
+            class="carousel-control-next"
+            href="#heroCarousel"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon bi bi-chevron-right"
+              aria-hidden="true"
+            ></span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- End Hero -->
+
+    <main id="main">
+     
+
+      <!-- start menu Section -->
+
+      <section id="menu" class="menu section-bg">
+        <div class="container max-width-container" data-aos="fade-up">
+          <div class="section-title">
+            <h2>Event Details</h2>
+            <p>Check All Upcomin Events</p>
+          </div>
+
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <ul id="menu-flters">
+                <li data-filter="*" class="filter-active">All</li>
+                <li data-filter=".filter-drinks">Concerts</li>
+                <li data-filter=".filter-salads">Live Shows</li>
+                <li data-filter=".filter-specialty"> Movies</li>
+              </ul>
+            </div>
+          </div>
+
+          <div
+            class="row menu-container"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="col-lg-6 menu-item filter-drinks">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIWXhj9ZSWg9fZtRwzA2z7nUAz9ntZYlZX-A&s"
+                class="menu-img"
+                alt=""
+              />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Arijit Singh</a><span>1000-5000/- </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img
+                src="https://tse2.mm.bing.net/th?id=OIP.Q79kgEE3BFgi0JgKHLVtiQHaJ4&pid=Api&P=0&h=180"
+                class="menu-img"
+                alt=""
+              />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Avengers 5</a><span>999-5000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                 Book the Movie Ticket Avengers reliesing on April 10th, 2025. Book the shows ticket now.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-drinks">
+              <img src="https://akm-img-a-in.tosshub.com/indiatoday/images/story/202501/diljit-273755237-16x9.jpg?VersionId=GuyYrXucsgP0nAvEp_lFEOm8IDxeRk44&size=690:388" class="menu-img" alt="" />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Diljit Dosanjh</a><span>1000-50000/-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ83NtAw31nmQC7pSAu_K4D8eAv4ZihA5PGcQ&s" class="menu-img" alt="" />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Aakash Mehta</a>
+                  <span>5000-10000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                  The Show is in Delhi on April 6th, 2025. Book the shows ticket now.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-drinks">
+              <img src="https://i.pinimg.com/736x/64/81/27/6481273f1872973173684957b6b7cf3b.jpg" class="menu-img" alt="" />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Shreya Ghoshal</a><span>15000/-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img
+                src="https://sosimg.sgp1.cdn.digitaloceanspaces.com/artist-gallery/8883870_1698041843.jpg"
+                class="menu-img"
+                alt=""
+              />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Aashish Solanki</a><span>5000-15000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                  The Show is in Pune on April 10th, 2025. Book the shows ticket now.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-salads">
+              <img
+                src="https://blackhattalent.com/wp-content/uploads/2023/04/Khan.png"
+                class="menu-img"
+                alt=""
+              />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Zakir Khan</a><span>2000-15000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                  The Show is in Banglore on April 15th, 2025. Book the shows ticket now.
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="https://i.pinimg.com/474x/f1/a4/c3/f1a4c33403df19aef9f64aa8c3881577.jpg" class="menu-img" alt="" />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Tiger VS Pathan</a><span>999-5000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                  Book the Movie Ticket Avengers reliesing on April 10th, 2025. Book the shows ticket now.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 menu-item filter-specialty">
+              <img src="Mithde.jpeg" class="menu-img" alt="" />
+              <div class="menu-item-details">
+                <div class="menu-content">
+                  <a href="index1.html">Mithde</a><span>499-5000/-</span>
+                </div>
+                <div class="menu-ingredients">
+                  Book the Movie Ticket Mithde reliesing on April 21, 2025. Book the shows ticket now.
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Menu Section -->
+
+      <!-- ======= Events Section ======= -->
+      <section id="events" class="events">
+        <div class="swiper-container max-width-container">
+          <div class="section-title">
+            <h2>Book Tickets For <span>Upcoming Events</span></h2>
+          </div>
+
+          <div class="events-slider swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="row event-item">
+                  <div class="col-lg-6 d-lg-flex align-items-center">
+                    <img
+                      src="Mithde.jpeg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Punjab</h3>
+                    <div class="price">
+                      <p><span>Mithde Movie</span></p>
+                    </div>
+                    <p class="fst-italic">
+                      Mithde is a captivating Punjabi drama film that was released on April 21, 2025. Directed by the talented Amberdeep Singh, the film brings a compelling story to life, blending intense emotions with powerful performances. Featuring a star-studded cast including Tania, Roopi Gill, and Sardar Sohi in the lead roles, the film explores the intricacies of relationships, cultural values, and personal growth.You can meet with our trip manager to plan
+                      all the trip details:
+                    </p>
+                   
+                    <p>
+                      We will make sure you have a fantastic Experience.
+                    </p>
+                    <a href="book.html" class="book-a-table-btn scrollto"
+                    >Book Now</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="row event-item">
+                  <div class="col-lg-6 d-lg-flex align-items-center">
+                    <img
+                      src="https://i.pinimg.com/736x/94/db/03/94db0382c642a229bd695b9f95fadf4d.jpg"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>New Delhi</h3>
+                    <div class="price">
+                      <p><span>Arijit Singh Concert</span></p>
+                    </div>
+                    <p class="fst-italic">
+                      Arijit Singh's concerts feature a mix of his popular Bollywood hits, including emotional ballads and energetic dance songs, with a focus on his powerful vocals and engaging stage presence.
+                      For an Arijit Singh concert in New Delhi, on April 05, 2025, expect a mix of his popular tracks and unique renditions, potentially including unplugged versions and mashups, with a focus on a transformative sensory experience.
+                    </p>
+                  
+                    <p>We will make sure you have a fantastic Concert experience</p>
+                    <br><br>
+                    <a href="book.html" class="book-a-table-btn scrollto"
+                    >Book Now</a>
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="row event-item">
+                  <div class="col-lg-6 d-lg-flex align-items-center">
+                    <img
+                      src="https://im.indiatimes.in/content/2024/Dec/Aakash-Mehta-Standup-Comedian-Live-Show-In-Delhi-NCR-2025_6754339776b94.jpg?w=725&h=380&cc=1&webp=1&q=75"
+                      class="img-fluid"
+                      alt=""
+                    />
+                  </div>
+                  <div class="col-lg-6 pt-4 pt-lg-0 content">
+                    <h3>Chandigarh</h3>
+                    <div class="price">
+                      <p><span>Aakash Mehta Stand Up</span></p>
+                    </div>
+                    <p class="fst-italic">
+                      On this day, April 6th, 2025, we pause to reflect on the milestones Akash has reached and the positive influence he continues to have on his community. His journey is one of inspiration for many who are navigating their own paths, showing us that with determination and an unwavering belief in oneself, any goal is within reach.
+                      in Chandigarh, on April 6th, 2025, We will take care of Your All needs Book Ticket Now:
+                    </p>
+                
+                    <p>
+                      We will make sure you have a fantastic experience in this show with Akash Mehta.
+                    </p>
+                    <br><br>
+                    <a href="book.html" class="book-a-table-btn scrollto"
+                    >Book Now</a
+        >
+                  </div>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- End Events Section -->
+
+    
+
+      <!-- ======= Gallery Section ======= -->
+      <section id="gallery" class="gallery">
+        <div class="container-fluid max-width-container" >
+          <div class="section-title">
+            <h2>Some photos from <span>Our Gallery</span></h2>
+          </div>
+          <div class="row g-2">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-1.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/06/62/13/066213b4fd1f54ed0760bfc5f44c4f30.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-2.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/d7/b9/72/d7b97270b6b2d6d033fe1f382149472f.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-3.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/52/3a/dc/523adc192eb78cd12e93918e8ebeca35.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-4.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/c4/38/64/c43864489f538b6c72abac4ebd6023ee.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-5.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/fd/b1/0b/fdb10b2f0fe59aae30c0805b5bdf8783.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-6.jpg">
+                  <img
+                    src="https://i.pinimg.com/474x/27/1b/0d/271b0d573390a9a995c12e270d60f55c.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-7.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/98/26/45/9826451a9f91ef2d125ae42100a5f807.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+              <div class="gallery-item">
+                <a href="gallery-8.jpg">
+                  <img
+                    src="https://i.pinimg.com/736x/d1/2e/1a/d12e1a9743d2fbc36b1be55cfe5057d7.jpg"
+                    alt=""
+                    class="img-fluid"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- End Gallery Section -->
+
+      <!-- ======= Testimonials Section ======= -->
+      <section id="testimonials" class="testimonials">
+        <div class="container position-relative max-width-container">
+          <div
+            class="testimonials-slider swiper"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+               
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    "One ticket, endless emotions—book now and immerse yourself in the world of Entertainment!"
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+              <!-- End testimonial item -->
+
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+              
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    "Turn up the volume on life—get ready for a concert you’ll never forget!"
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div>
+              <div id="chatbot-container">
+    <!-- Floating Chatbot Icon -->
+    <div id="chatbot-icon" onclick="toggleChatWindow()">
+        <img src="chatbot-icon.png" alt="Chatbot Icon" class="icon" />
+    </div>
+
+    <!-- Chat Window (Initially hidden) -->
+    <div id="chat-window" class="chat-window">
+        <div class="chat-header">
+            <span class="chat-title">Chat with us</span>
+            <button class="close-btn" onclick="toggleChatWindow()">×</button>
+        </div>
+
+        <div id="chat-messages" class="chat-messages">
+            <!-- Chat messages will appear here -->
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="Type a message..." />
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+          
+              <!-- End testimonial item -->
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+      <!-- End Testimonials Section -->
+
+      <!-- ======= Contact Section ======= -->
+      <section id="contact" class="contact">
+        <div class="container max-width-container">
+          <div class="section-title">
+            <h2><span>Contact</span> Us</h2>
+            <p>Contact us if you Face any inconvinience.</p>
+          </div>
+
+    
+
+        <div class="container mt-5 max-width-container">
+          <div class="info-wrap">
+            <div class="row"> <!--
+              <div class="col-lg-3 col-md-6 info">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>abc place<br />1053 Phagwara, Punjab</p>
+              </div>
+            -->
+              <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                <i class="bi bi-clock"></i>
+                <h4>Office Open Hours:</h4>
+                <p>Monday-Friday:<br />10:00 AM - 07:00 PM</p>
+                <p>saturday-Sunday:<br />10:00 AM - 01:00 PM</p>
+              </div>
+
+           
+              <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>eventix0@example.com</p>
+              </div>
+
+             
+              <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+                <i class="bi bi-phone"></i>
+                <h4>Call:</h4>
+                <p>+91 1001 5283 1233</p>
+                <p>+91 2001 5693 1354</p>
+              </div>
+            </div>
+          </div>
+
+          <form role="form" class="email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input
+                type="text"
+                class="form-control"
+                name="subject"
+                id="subject"
+                placeholder="Subject"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <textarea
+                class="form-control"
+                name="message"
+                rows="5"
+                placeholder="Feedback"
+                required
+              ></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">
+                Your message has been sent. Thank you!
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="reset">Send Feedback</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      <!-- End Contact Section -->
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+      <div class="container">
+        <h3>Eventix</h3>
+        <p>
+          "At Eventix, we redefine the way you experience events and theater. Our platform uses cutting-edge AI technology to provide seamless ticket booking, personalized seat selection based on your preferences, and real-time guidance through our intelligent chatbot. From electrifying concerts to captivating theater performances, we ensure every moment is memorable. Explore past events, witness how we bring experiences to life, and join us in creating unforgettable memories."
+        </p>
+        <div class="social-links">
+          <a href="#" class="facebook"
+            ><i class="bx bxl-facebook"></i
+          ></a>
+          <a href="#" class="instagram"
+            ><i class="bx bxl-instagram"></i
+          ></a>
+       
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script> -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="main.js"></script>
+  </body>
+</html>
